@@ -1,0 +1,123 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+
+<style>
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+</style>
+
+
+
+
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <div><%=smessage%></div>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+
+            </div>
+          
+ <% userp.forEach(function(p) { %>
+  	<p><%= p.user %></p>
+  <% }); %>
+
+
+        <!-- LOGIN FORM -->
+    <form action="/profile" method="post">
+    <input type="hidden" name="user" value = <%= user.local.email %>>
+    <input type="hidden" name="timestamp" value= <%= Date.now() %>>
+    <%var date = new Date().toLocaleDateString({ timeZone: 'Asia/Shanghai'}) %>
+    <%var time = new Date().toLocaleTimeString({ timeZone: 'Asia/Shanghai'}) %>
+    <input type="hidden" id="date" name="date" value = <%= String(date)+",\xa0"+String(time) %>>
+
+    <div class="slidecontainer">
+      <input type="range" min="-3" max="3" value="0" class="slider" id="myRange" name="pvalue">
+      <p>Value: <span id="demo"></span></p>
+    </div>
+    
+    <script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+      
+    }
+    
+    </script>
+    
+        <div class="form-group">
+            <label>Area</label>
+            <input type="text" class="form-control" name="area">
+        </div>
+
+        <button id="submit" type="submit" class="btn btn-warning btn-lg">Submit</button>
+    </form>    
+            
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
