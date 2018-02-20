@@ -1,8 +1,5 @@
 // app/routes.js
 
-var mongoose = require('mongoose');
-var configDB = require('../config/database.js');
-
 module.exports = function(app, passport) {
 
     // =====================================
