@@ -15,7 +15,7 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 // configuration ===============================================================
-var mgurl = process.env.MONGOLAB_URI;
+var mgurl = process.env.MONGODB_URI;
 //var mgurl = 'mongodb://localhost:27017/example';
 
 mongoose.connect(mgurl); // connect to our database
