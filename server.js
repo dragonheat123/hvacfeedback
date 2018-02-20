@@ -1,5 +1,5 @@
 // server.js
-
+console.log(process.env.MONGOLAB_URI);
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
