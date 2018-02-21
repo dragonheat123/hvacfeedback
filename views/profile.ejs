@@ -54,9 +54,121 @@ padding: 1% 1% 1% 1%
 
 .area1 {
     position: absolute;
-    bottom: 80%;
-    left:10%;
+    top: 0%;
+    left:0%;
+    height: 32%;
+    width: 39%;
+     background: rgba(248, 255, 127, 0.3);
+     text-align: center;
+     padding: 0% 0% 0% 0%;
+     
 }
+.area1:hover {
+    position: absolute;
+    top: 0%;
+    left:0%;
+    height: 32%;
+    width: 39%;
+     background:  rgba(248, 255, 127, 1);
+     text-align: center;
+     padding: 0% 0% 0% 0%;
+     font-weight: bold;
+     
+}
+
+.area2 {
+    position: absolute;
+    top: 32%;
+    left:0%;
+    height: 67%;
+    width: 39%;
+    background: rgba(127, 255, 175, 0.3);
+     text-align: center;
+     padding: 0% 0% 0% 0%
+}
+
+.area2:hover {
+    position: absolute;
+    top: 32%;
+    left:0%;
+    height: 67%;
+    width: 39%;
+    background: rgba(127, 255, 175, 1);
+     text-align: center;
+     padding: 0% 0% 0% 0%;
+     font-weight: bold;
+}
+
+.area3 {
+    position: absolute;
+    top: 0%;
+    left: 39%;
+    height: 65%;
+    width: 36%;
+    background: rgba(221, 179, 255, 0.3);
+     text-align: center;
+     padding: 0% 0% 0% 0%
+}
+
+.area3:hover {
+    position: absolute;
+    top: 0%;
+    left:39%;
+    height: 65%;
+    width: 36%;
+    background: rgba(221, 179, 255, 1);
+     text-align: center;
+     padding: 0% 0% 0% 0%;
+     font-weight: bold;
+}
+
+.area4 {
+    position: absolute;
+    top: 0%;
+    left: 75%;
+    height: 98%;
+    width: 25%;
+    background: rgba(140, 200, 255, 0.3);
+     text-align: center;
+     padding: 0% 0% 0% 0%
+}
+
+.area4:hover {
+    position: absolute;
+    top: 0%;
+    left:75%;
+    height: 98%;
+    width: 25%;
+    background: rgba(140, 200, 255, 1);
+     text-align: center;
+     padding: 0% 0% 0% 0%;
+     font-weight: bold;
+}
+
+.area5 {
+    position: absolute;
+    top: 65%;
+    left: 39%;
+    height: 35%;
+    width: 36%;
+    background: rgba(255, 223, 221, 0.3);
+     text-align: center;
+     padding: 0% 0% 0% 0%
+}
+
+.area5:hover {
+    position: absolute;
+    top: 65%;
+    left:39%;
+    height: 35%;
+    width: 36%;
+    background: rgba(255, 223, 221, 1);
+     text-align: center;
+     padding: 0% 0% 0% 0%;
+     font-weight: bold;
+}
+
+
 
 </style>
 
@@ -109,19 +221,21 @@ padding: 1% 1% 1% 1%
     <h3><span class="fa fa-clipboard"></span> Submit Feedback!</h3>
     <form action="/profile" method="post">
     <div class ="row">
-    <p><strong>Select Area:</strong><p>
+    <p><strong>Click to select area, Hover to view more information:</strong><p>
     <div class="layout">
     <img src='../static/layout.png' alt="Office Layout"  width="100%">
-     <div class="area1">Area 1 Current Temp: </div>
-      <div class="area2">Area 2</div>
-       <div class="area3">Area 3</div>
-        <div class="area4">Area 4</div>
-         <div class="area5">Area 5</div>
-          <div class="area6">Area 6</div>
-           <div class="area7">Area 7</div>
-            <div class="area8">Area 8</div>
-             <div class="area9">Area 9</div>
+     <div class="area1" id="area1" value="1" onclick="clickArea(this)">Area 1</br>Current Temp: 25.6°C</div>
+      <div class="area2" id="area2" value="2" onclick="clickArea(this)">Area 2</br>Current Temp: 24.6°C</div>
+       <div class="area3" id="area3" value="3" onclick="clickArea(this)">Area 3</br>Current Temp: 26.2°C</div>
+        <div class="area4" id="area4" value="4" onclick="clickArea(this)">Area 4</br>Current Temp: 23.6°C</div>
+         <div class="area5" id="area5" value="5" onclick="clickArea(this)">Area 5</br>Current Temp: 25.6°C</div>
     </div>
+    
+                <div class="form-group">
+                <label>Area</label>
+                <input type="text" id="ainput" class="form-control" name="area">
+            </div>
+    
         
         <input type="hidden" name="user" value = <%= user.local.email %>>
         <input type="hidden" name="timestamp" value= <%= Date.now() %>>
@@ -137,6 +251,7 @@ padding: 1% 1% 1% 1%
         <script>
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
+        var ainput = document.getElementById("ainput");
         output.innerHTML = slider.value;
         
         slider.oninput = function() {
@@ -144,12 +259,13 @@ padding: 1% 1% 1% 1%
           
         }
         
+        function clickArea(e) {
+        document.getElementById("ainput").value = e.getAttribute('value');
+        }        
+        
         </script>
         
-            <div class="form-group">
-                <label>Area</label>
-                <input type="text" class="form-control" name="area">
-            </div>
+
     
             <button id="submit" type="submit" class="btn btn-warning btn-lg">Submit</button>
      </form>    

@@ -54,6 +54,7 @@ module.exports = function(app, passport) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res,next) {
         require('./userp.js').find({ 'user': req.user.local.email })
+        .sort({timestamp:-1})
         .limit(5)
         .exec(function(err, data){
         res.render('profile.ejs', {
@@ -85,6 +86,7 @@ module.exports = function(app, passport) {
          .then(item => {
         
         require('./userp.js').find({ 'user': req.user.local.email })
+        .sort({timestamp:-1})
         .limit(5)
         .exec(function(err, data){
         res.render('profile.ejs', {
@@ -94,6 +96,7 @@ module.exports = function(app, passport) {
         })
          .catch(err => {
         require('./userp.js').find({ 'user': req.user.local.email })
+        .sort({timestamp:-1})
         .limit(5)
         .exec(function(err, data){
         res.render('profile.ejs', {
