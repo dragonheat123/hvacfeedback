@@ -3,20 +3,24 @@ console.log(process.env.MONGOLAB_URI);
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
+var path = require('path');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 
+
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+
 // configuration ===============================================================
-var mgurl = process.env.MONGODB_URI;
+//var mgurl = process.env.MONGODB_URI;
 //var mgurl = 'mongodb://localhost:27017/example';
+var mgurl = 'mongodb://heroku_65672x4b:6ag8rhqn1bo0mme4fin2vev98m@ds161873.mlab.com:61873/heroku_65672x4b';
 
 mongoose.connect(mgurl); // connect to our database
 
@@ -35,6 +39,9 @@ app.use(session({ secret: 'hellowhoisthis' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
+///middleware for images
+app.use('/static', express.static(path.join(__dirname, 'assets')))
 
 // routes ======================================================================
 require('./models/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport

@@ -37,6 +37,27 @@
     background: #4CAF50;
     cursor: pointer;
 }
+
+.table{
+padding: 1% 1% 1% 1%
+}
+
+.layout {
+    position: relative;
+    text-align: center;
+    z-index = -1;
+}
+
+.weather {
+    padding: 1% 1% 1% 1%
+}
+
+.area1 {
+    position: absolute;
+    bottom: 80%;
+    left:10%;
+}
+
 </style>
 
 
@@ -55,67 +76,95 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <div><%=smessage%></div>
+        <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbspHVAC Feedback</h1>
+        <div class="table"><%=smessage%></div>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
-    <div class="row">
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
-
-            </div>
-          
- <% userp.forEach(function(p) { %>
-  	<p><%= p.user %></p>
-  <% }); %>
-
-
-        <!-- LOGIN FORM -->
+    <!-- PROFILE INFORMATION -->
+    <div class="col-sm-6">
+        <!--div class="well"-->
+            <h3><span class="fa fa-user"></span> User Profile</h3>
+                <p>
+                    <strong>id</strong>: <%= user.local.email %><br>
+                </p>
+            <h3><span class="fa fa-clock-o"></span> History</h3>
+            <table width = 400%>
+            <tr><td><strong>Date</strong></td><td><strong>Area</strong></td><td><strong>Preference</strong></td></tr> 
+             <% userp.forEach(function(p) { %>
+              	<tr><td height><%= p.date %></td><td><%= p.area %></td><td><%= p.pvalue %></td></tr>
+             <% }); %>
+             </table>
+                
+        <!--/div-->
+        <h3><span class="fa fa-map-marker"></span> Current Weather</h3>
+        <span class = "weather"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:00000.204.48692&bannertypeclick=wu_clean2day" title="Kampong Pengkalan Petai, Singapore Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_metric_cond&airportcode=WSSL&ForcedCity=Kampong Pengkalan Petai&ForcedState=Singapore&wmo=48692&language=EN" alt="Find more about Weather in Kampong Pengkalan Petai, SR" width="300" /></a><br><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:00000.204.48692&bannertypeclick=wu_clean2day" title="Get latest Weather Forecast updates" style="font-family: sans-serif; font-size: 12px" target="_blank">Click for weather forecast</a></span>
+        
+    </div>
+    
+    <!-- SUBMIT FORM -->
+    
+    <div class="col-sm-6">
+    <h3><span class="fa fa-clipboard"></span> Submit Feedback!</h3>
     <form action="/profile" method="post">
-    <input type="hidden" name="user" value = <%= user.local.email %>>
-    <input type="hidden" name="timestamp" value= <%= Date.now() %>>
-    <%var date = new Date().toLocaleDateString({ timeZone: 'Asia/Shanghai'}) %>
-    <%var time = new Date().toLocaleTimeString({ timeZone: 'Asia/Shanghai'}) %>
-    <input type="hidden" id="date" name="date" value = <%= String(date)+",\xa0"+String(time) %>>
-
-    <div class="slidecontainer">
-      <input type="range" min="-3" max="3" value="0" class="slider" id="myRange" name="pvalue">
-      <p>Value: <span id="demo"></span></p>
+    <div class ="row">
+    <p><strong>Select Area:</strong><p>
+    <div class="layout">
+    <img src='../static/layout.png' alt="Office Layout"  width="100%">
+     <div class="area1">Area 1 Current Temp: </div>
+      <div class="area2">Area 2</div>
+       <div class="area3">Area 3</div>
+        <div class="area4">Area 4</div>
+         <div class="area5">Area 5</div>
+          <div class="area6">Area 6</div>
+           <div class="area7">Area 7</div>
+            <div class="area8">Area 8</div>
+             <div class="area9">Area 9</div>
     </div>
+        
+        <input type="hidden" name="user" value = <%= user.local.email %>>
+        <input type="hidden" name="timestamp" value= <%= Date.now() %>>
+        <%var date = new Date().toLocaleDateString({ timeZone: 'Asia/Shanghai'}) %>
+        <%var time = new Date().toLocaleTimeString({ timeZone: 'Asia/Shanghai'}) %>
+        <input type="hidden" id="date" name="date" value = <%= String(date)+",\xa0"+String(time) %>>
+    <p><strong>Select Comfort Level: (cold:-3 to hot:3)</strong></p>
+        <div class="slidecontainer">
+        <input type="range" min="-3" max="3" value="0" class="slider" id="myRange" name="pvalue">
+          <p>Value: <span id="demo"></span></p>
+        </div>
+        
+        <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+        
+        slider.oninput = function() {
+          output.innerHTML = this.value;
+          
+        }
+        
+        </script>
+        
+            <div class="form-group">
+                <label>Area</label>
+                <input type="text" class="form-control" name="area">
+            </div>
     
-    <script>
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-    output.innerHTML = slider.value;
-    
-    slider.oninput = function() {
-      output.innerHTML = this.value;
-      
-    }
-    
-    </script>
-    
-        <div class="form-group">
-            <label>Area</label>
-            <input type="text" class="form-control" name="area">
+            <button id="submit" type="submit" class="btn btn-warning btn-lg">Submit</button>
+     </form>    
+                
         </div>
 
-        <button id="submit" type="submit" class="btn btn-warning btn-lg">Submit</button>
-    </form>    
+    </div>
             
-        </div>
-
     </div>
+
+
+
+
+
+     
 
 </div>
 
