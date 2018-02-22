@@ -233,7 +233,8 @@ padding: 1% 1% 1% 1%
     
                 <div class="form-group">
                 <label>Area</label>
-                <input type="text" id="ainput" class="form-control" name="area">
+                <div id="adiv">Select your area...</div>
+                <input type="hidden" id="ainput" class="form-control" name="area">
             </div>
     
         
@@ -251,7 +252,7 @@ padding: 1% 1% 1% 1%
         <script>
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
-        var ainput = document.getElementById("ainput");
+
         output.innerHTML = slider.value;
         
         slider.oninput = function() {
@@ -261,6 +262,7 @@ padding: 1% 1% 1% 1%
         
         function clickArea(e) {
         document.getElementById("ainput").value = e.getAttribute('value');
+        document.getElementById("adiv").innerHTML = e.getAttribute('value');
         }        
         
         </script>
