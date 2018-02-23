@@ -54,10 +54,10 @@ padding: 1% 1% 1% 1%
 
 .area1 {
     position: absolute;
-    top: 0%;
-    left:0%;
-    height: 32%;
-    width: 39%;
+    top: 63%;
+    left:12%;
+    height: 33%;
+    width: 23%;
      background: rgba(248, 255, 127, 0.3);
      text-align: center;
      padding: 0% 0% 0% 0%;
@@ -65,10 +65,10 @@ padding: 1% 1% 1% 1%
 }
 .area1:hover {
     position: absolute;
-    top: 0%;
-    left:0%;
-    height: 32%;
-    width: 39%;
+    top: 63%;
+    left:12%;
+    height: 33%;
+    width: 23%;
      background:  rgba(248, 255, 127, 1);
      text-align: center;
      padding: 0% 0% 0% 0%;
@@ -78,10 +78,10 @@ padding: 1% 1% 1% 1%
 
 .area2 {
     position: absolute;
-    top: 32%;
-    left:0%;
-    height: 67%;
-    width: 39%;
+    top: 36%;
+    left:35%;
+    height: 30%;
+    width: 32%;
     background: rgba(127, 255, 175, 0.3);
      text-align: center;
      padding: 0% 0% 0% 0%
@@ -89,10 +89,10 @@ padding: 1% 1% 1% 1%
 
 .area2:hover {
     position: absolute;
-    top: 32%;
-    left:0%;
-    height: 67%;
-    width: 39%;
+    top: 36%;
+    left:35%;   
+    height: 30%;
+    width: 32%;
     background: rgba(127, 255, 175, 1);
      text-align: center;
      padding: 0% 0% 0% 0%;
@@ -101,10 +101,10 @@ padding: 1% 1% 1% 1%
 
 .area3 {
     position: absolute;
-    top: 0%;
-    left: 39%;
-    height: 65%;
-    width: 36%;
+    top: 4%;
+    left: 35%;
+    height: 31.5%;
+    width: 32%;
     background: rgba(221, 179, 255, 0.3);
      text-align: center;
      padding: 0% 0% 0% 0%
@@ -112,10 +112,10 @@ padding: 1% 1% 1% 1%
 
 .area3:hover {
     position: absolute;
-    top: 0%;
-    left:39%;
-    height: 65%;
-    width: 36%;
+    top: 4%;
+    left:35%;
+    height: 31.5%;
+    width: 32%;
     background: rgba(221, 179, 255, 1);
      text-align: center;
      padding: 0% 0% 0% 0%;
@@ -124,10 +124,10 @@ padding: 1% 1% 1% 1%
 
 .area4 {
     position: absolute;
-    top: 0%;
-    left: 75%;
-    height: 98%;
-    width: 25%;
+    top: 4%;
+    left: 67.5%;
+    height: 31%;
+    width: 22%;
     background: rgba(140, 200, 255, 0.3);
      text-align: center;
      padding: 0% 0% 0% 0%
@@ -135,38 +135,17 @@ padding: 1% 1% 1% 1%
 
 .area4:hover {
     position: absolute;
-    top: 0%;
-    left:75%;
-    height: 98%;
-    width: 25%;
+    top: 4%;
+    left:67.5%;
+    height: 31%;
+    width: 22%;
     background: rgba(140, 200, 255, 1);
      text-align: center;
      padding: 0% 0% 0% 0%;
      font-weight: bold;
 }
 
-.area5 {
-    position: absolute;
-    top: 65%;
-    left: 39%;
-    height: 35%;
-    width: 36%;
-    background: rgba(255, 223, 221, 0.3);
-     text-align: center;
-     padding: 0% 0% 0% 0%
-}
 
-.area5:hover {
-    position: absolute;
-    top: 65%;
-    left:39%;
-    height: 35%;
-    width: 36%;
-    background: rgba(255, 223, 221, 1);
-     text-align: center;
-     padding: 0% 0% 0% 0%;
-     font-weight: bold;
-}
 
 
 
@@ -221,18 +200,17 @@ padding: 1% 1% 1% 1%
     <h3><span class="fa fa-clipboard"></span> Submit Feedback!</h3>
     <form action="/profile" method="post">
     <div class ="row">
-    <p><strong>Click to select area, Hover to view more information:</strong><p>
+    <p><strong>Level 2 R&D Office (Hover to view more information)</strong><p>
     <div class="layout">
     <img src='../static/layout.png' alt="Office Layout"  width="100%">
      <div class="area1" id="area1" value="1" onclick="clickArea(this)">Area 1</br>Current Temp: 25.6°C</div>
       <div class="area2" id="area2" value="2" onclick="clickArea(this)">Area 2</br>Current Temp: 24.6°C</div>
        <div class="area3" id="area3" value="3" onclick="clickArea(this)">Area 3</br>Current Temp: 26.2°C</div>
         <div class="area4" id="area4" value="4" onclick="clickArea(this)">Area 4</br>Current Temp: 23.6°C</div>
-         <div class="area5" id="area5" value="5" onclick="clickArea(this)">Area 5</br>Current Temp: 25.6°C</div>
     </div>
     
                 <div class="form-group">
-                <label>Area</label>
+                <label>Area (Click to select)</label>
                 <div id="adiv">Select your area...</div>
                 <input type="hidden" id="ainput" class="form-control" name="area">
             </div>
