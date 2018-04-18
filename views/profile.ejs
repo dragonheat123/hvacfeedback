@@ -155,6 +155,7 @@ padding: 1% 1% 1% 1%
 
 
 <head>
+    <meta http-equiv="refresh" content="60" >
     <title>3M HVAC Feedback</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -203,10 +204,22 @@ padding: 1% 1% 1% 1%
     <p><strong>Level 2 R&D Office (Hover to view more information)</strong><p>
     <div class="layout">
     <img src='../static/layout.png' alt="Office Layout"  width="100%">
-     <div class="area1" id="area1" value="1" onclick="clickArea(this)">Area 1</br>Current Temp: 25.6°C</div>
-      <div class="area2" id="area2" value="2" onclick="clickArea(this)">Area 2</br>Current Temp: 24.6°C</div>
-       <div class="area3" id="area3" value="3" onclick="clickArea(this)">Area 3</br>Current Temp: 26.2°C</div>
-        <div class="area4" id="area4" value="4" onclick="clickArea(this)">Area 4</br>Current Temp: 23.6°C</div>
+     <div class="area1" id="area1" value="1" onclick="clickArea(this)">Area 1
+     </br>Temp: <%= temparray[0] %>°C
+     </br>Humd: <%= humdarray[0] %>%
+     </div>
+     <div class="area2" id="area2" value="2" onclick="clickArea(this)">Area 2
+     </br>Temp: <%= temparray[1] %>°C
+     </br>Humd: <%= humdarray[1] %>%
+     </div>
+      <div class="area3" id="area3" value="3" onclick="clickArea(this)">Area 3
+     </br>Temp: <%= temparray[2] %>°C
+     </br>Humd: <%= humdarray[2] %>%
+     </div>
+    <div class="area4" id="area4" value="4" onclick="clickArea(this)">Area 4
+    </br>Temp: <%= temparray[3] %>°C
+     </br>Humd: <%= humdarray[3] %>%
+     </div>
     </div>
     
                 <div class="form-group">

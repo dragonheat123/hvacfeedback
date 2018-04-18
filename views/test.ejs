@@ -1,0 +1,53 @@
+<html>
+<body>
+
+
+
+<div>
+            <table width = 400%>
+            <tr><td><strong>Date</strong></td><td><strong>Area</strong></td><td><strong>Preference</strong></td></tr> 
+             <% userp.forEach(function(p) { %>
+              	<tr><td height><%= p.date %></td><td><%= p.area %></td><td><%= p.pvalue %></td></tr>
+             <% }); %>
+             </table>
+
+</div>
+
+<div>
+
+
+     <div class="area1" id="area1" value="1" onclick="clickArea(this)">Area 1</br>Current Temp: <%= temparray[0] %>°C</div>
+      <div class="area2" id="area2" value="2" onclick="clickArea(this)">Area 2</br>Current Temp: <%= temparray[1] %>°C</div>
+       <div class="area3" id="area3" value="3" onclick="clickArea(this)">Area 3</br>Current Temp: <%= temparray[2] %>°C</div>
+        <div class="area4" id="area4" value="4" onclick="clickArea(this)">Area 4</br>Current Temp: <%= temparray[3] %>°C</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -52,17 +52,38 @@ module.exports = function(app, passport) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res,next) {
-        require('./userp.js').find({ 'user': req.user.local.email })
-        .sort({timestamp:-1})
-        .limit(5)
-        .exec(function(err, data){
+    app.get('/profile', isLoggedIn,
+        async (req,res) => {
+        var temp = [];
+        var humd = [];
+        var userdata;
+        for (i=1;i<=4;i++){
+            try{
+                await require('./nodes.js').findOne({'Node' : i.toString()}).sort({timestamp:-1})
+                    .exec(function(err,data){
+                    if (data != null){
+                        temp.push(data.Temp);
+                        humd.push(data.Humd);
+                    }else{temp.push(null);humd.push(null)}
+                   }
+                    )       
+           }
+           catch (error){
+           }};
+        await require('./userp.js').find({ 'user': req.user.local.email }).sort({timestamp:-1})
+            .limit(5).exec(function(err,data){
+               userdata = data;
+           }
+           );    
         res.render('profile.ejs', {
-        smessage: 'Welcome!',
+       smessage: 'Welcome!',
         user : req.user, // get the user out of session and pass to template
-        userp : data });    
-        });
-        });
+        userp : userdata,
+        temparray : temp,
+       humdarray : humd
+       })
+    }
+    )
     
 
 
@@ -80,33 +101,106 @@ module.exports = function(app, passport) {
     // =====================================
     
     
-    app.post("/profile", isLoggedIn, (req, res) => {
+    app.post("/profile", isLoggedIn, async (req, res) => {
          var myData = new require('./userp.js')(req.body);
-         myData.save()
-         .then(item => {
+         var usermsg
+         await myData.save(
+             function(error) {
+                usermsg = 'Req Submitted!' + JSON.stringify(req.body)
+             if (error) {usermsg = ('Bad Request!' + JSON.stringify(req.body))}
+             });
+             
+        var temp = [];
+        var humd = [];
+        var userdata;
+        for (i=1;i<=4;i++){
+            try{
+                await require('./nodes.js').findOne({'Node' : i.toString()}).sort({timestamp:-1})
+                    .exec(function(err,data){
+                    if (data != null){
+                        temp.push(data.Temp);
+                        humd.push(data.Humd);
+                    }else{temp.push(null);humd.push(null)}
+                   }
+                    )       
+           }
+           catch (error){
+           }};
+        await require('./userp.js').find({ 'user': req.user.local.email }).sort({timestamp:-1})
+            .limit(5).exec(function(err,data){
+               userdata = data;
+           }
+           );    
+        res.render('profile.ejs', {
+       smessage: usermsg,
+        user : req.user, // get the user out of session and pass to template
+        userp : userdata,
+        temparray : temp,
+       humdarray : humd
+       });    
+         }
+         )
+
         
-        require('./userp.js').find({ 'user': req.user.local.email })
-        .sort({timestamp:-1})
-        .limit(5)
-        .exec(function(err, data){
-        res.render('profile.ejs', {
-        smessage: ('Req Submitted!' + JSON.stringify(req.body)),
+    // =========
+    // submit temperature, humidity
+    // =========       
+    app.post('/nodes',
+            function(req,res){
+            var new_node = new require('./nodes.js')(req.body);
+            new_node.save(function(err, task){
+                    if (err){
+                      res.send(err)};
+                    res.json(task);
+            })});
+    app.get('/nodes/start-time=:start&end-time=:end&nodeid=:nodeid',
+            function(req, res) {
+            require('./nodes.js').find(
+            {
+                'Node' : req.params.nodeid,
+                'timestamp' : { $gte : req.params.start, $lte : req.params.end }
+            }, function(err, task) {
+                if (err){
+                  res.send(err)};
+                res.json(task);});
+            });         
+
+     
+            
+    app.get('/test', isLoggedIn, 
+    async (req,res) => {
+        var temp = [];
+        var humd = [];
+        var userdata;
+        for (i=1;i<=4;i++){
+            try{
+                await require('./nodes.js').findOne({'Node' : i.toString()}).sort({timestamp:-1})
+                    .exec(function(err,data){
+                    if (data != null){
+                        temp.push(data.Temp);
+                        humd.push(data.Humd);
+                    }else{temp.push(null);humd.push(null)}
+                   }
+                    )       
+           }
+           catch (error){
+           }};
+        await require('./userp.js').find({ 'user': req.user.local.email }).sort({timestamp:-1})
+            .limit(5).exec(function(err,data){
+               userdata = data;
+           }
+           );    
+        res.render('test.ejs', {
+       smessage: (JSON.stringify(req.body)),
         user : req.user, // get the user out of session and pass to template
-        userp : data })});    
-        })
-         .catch(err => {
-        require('./userp.js').find({ 'user': req.user.local.email })
-        .sort({timestamp:-1})
-        .limit(5)
-        .exec(function(err, data){
-        res.render('profile.ejs', {
-        smessage: ('Bad Request!' + JSON.stringify(req.body)),
-        user : req.user, // get the user out of session and pass to template
-        userp : data })});         
-         });
-        });    
-    
-    
+        userp : userdata,
+        temparray : temp,
+       humdarray : humd
+       })
+    }
+    );  
+
+
 };
 
 // route middleware to make sure a user is logged in
@@ -119,4 +213,5 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
+
     
