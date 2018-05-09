@@ -57,7 +57,7 @@ module.exports = function(app, passport) {
         var temp = [];
         var humd = [];
         var userdata;
-        for (i=1;i<=4;i++){
+        for (i=1;i<=5;i++){
             try{
                 await require('./nodes.js').findOne({'Node' : i.toString()}).sort({timestamp:-1})
                     .exec(function(err,data){
@@ -113,7 +113,7 @@ module.exports = function(app, passport) {
         var temp = [];
         var humd = [];
         var userdata;
-        for (i=1;i<=4;i++){
+        for (i=1;i<=5;i++){
             try{
                 await require('./nodes.js').findOne({'Node' : i.toString()}).sort({timestamp:-1})
                     .exec(function(err,data){
@@ -167,7 +167,7 @@ module.exports = function(app, passport) {
 
      
             
-    app.get('/test', isLoggedIn, 
+/*     app.get('/test', isLoggedIn, 
     async (req,res) => {
         var temp = [];
         var humd = [];
@@ -198,7 +198,7 @@ module.exports = function(app, passport) {
        humdarray : humd
        })
     }
-    );  
+    );   */
 
 
 };

@@ -54,9 +54,9 @@ padding: 1% 1% 1% 1%
 
 .area1 {
     position: absolute;
-    top: 63%;
-    left:12%;
-    height: 33%;
+    top: 61%;
+    left:55%;
+    height: 23%;
     width: 23%;
      background: rgba(248, 255, 127, 0.3);
      text-align: center;
@@ -65,9 +65,9 @@ padding: 1% 1% 1% 1%
 }
 .area1:hover {
     position: absolute;
-    top: 63%;
-    left:12%;
-    height: 33%;
+    top: 61%;
+    left:55%;
+    height: 23%;
     width: 23%;
      background:  rgba(248, 255, 127, 1);
      text-align: center;
@@ -78,10 +78,10 @@ padding: 1% 1% 1% 1%
 
 .area2 {
     position: absolute;
-    top: 36%;
-    left:35%;
-    height: 30%;
-    width: 32%;
+    top: 61%;
+    left:37%;
+    height: 23%;
+    width: 18%;
     background: rgba(127, 255, 175, 0.3);
      text-align: center;
      padding: 0% 0% 0% 0%
@@ -89,10 +89,10 @@ padding: 1% 1% 1% 1%
 
 .area2:hover {
     position: absolute;
-    top: 36%;
-    left:35%;   
-    height: 30%;
-    width: 32%;
+    top: 61%;
+    left:37%;   
+    height: 23%;
+    width: 18%;
     background: rgba(127, 255, 175, 1);
      text-align: center;
      padding: 0% 0% 0% 0%;
@@ -101,10 +101,10 @@ padding: 1% 1% 1% 1%
 
 .area3 {
     position: absolute;
-    top: 4%;
-    left: 35%;
-    height: 31.5%;
-    width: 32%;
+    top: 37%;
+    left: 37%;
+    height: 23%;
+    width: 26%;
     background: rgba(221, 179, 255, 0.3);
      text-align: center;
      padding: 0% 0% 0% 0%
@@ -112,10 +112,10 @@ padding: 1% 1% 1% 1%
 
 .area3:hover {
     position: absolute;
-    top: 4%;
-    left:35%;
-    height: 31.5%;
-    width: 32%;
+    top: 37%;
+    left:37%;
+    height: 23%;
+    width: 26%;
     background: rgba(221, 179, 255, 1);
      text-align: center;
      padding: 0% 0% 0% 0%;
@@ -124,10 +124,10 @@ padding: 1% 1% 1% 1%
 
 .area4 {
     position: absolute;
-    top: 4%;
-    left: 67.5%;
-    height: 31%;
-    width: 22%;
+    top: 14%;
+    left: 23%;
+    height: 23%;
+    width: 25.5%;
     background: rgba(140, 200, 255, 0.3);
      text-align: center;
      padding: 0% 0% 0% 0%
@@ -135,18 +135,15 @@ padding: 1% 1% 1% 1%
 
 .area4:hover {
     position: absolute;
-    top: 4%;
-    left:67.5%;
-    height: 31%;
-    width: 22%;
+    top: 14%;
+    left:23%;
+    height: 23%;
+    width: 25.5%;
     background: rgba(140, 200, 255, 1);
      text-align: center;
      padding: 0% 0% 0% 0%;
      font-weight: bold;
 }
-
-
-
 
 
 </style>
@@ -203,22 +200,22 @@ padding: 1% 1% 1% 1%
     <div class ="row">
     <p><strong>Level 2 R&D Office (Hover to view more information)</strong><p>
     <div class="layout">
-    <img src='../static/layout.png' alt="Office Layout"  width="100%">
+    <img src='../static/layout_m.png' alt="Office Layout"  width="60%">
      <div class="area1" id="area1" value="1" onclick="clickArea(this)">Area 1
-     </br>Temp: <%= temparray[0] %>°C
-     </br>Humd: <%= humdarray[0] %>%
-     </div>
-     <div class="area2" id="area2" value="2" onclick="clickArea(this)">Area 2
      </br>Temp: <%= temparray[1] %>°C
      </br>Humd: <%= humdarray[1] %>%
      </div>
-      <div class="area3" id="area3" value="3" onclick="clickArea(this)">Area 3
+     <div class="area2" id="area2" value="2" onclick="clickArea(this)">Area 2
      </br>Temp: <%= temparray[2] %>°C
      </br>Humd: <%= humdarray[2] %>%
      </div>
+      <div class="area3" id="area3" value="3" onclick="clickArea(this)">Area 3
+     </br>Temp: <%= temparray[0] %>°C
+     </br>Humd: <%= humdarray[0] %>%
+     </div>
     <div class="area4" id="area4" value="4" onclick="clickArea(this)">Area 4
-    </br>Temp: <%= temparray[3] %>°C
-     </br>Humd: <%= humdarray[3] %>%
+    </br>Temp: <%= temparray[4] %>°C
+     </br>Humd: <%= humdarray[4] %>%
      </div>
     </div>
     
@@ -261,8 +258,7 @@ padding: 1% 1% 1% 1%
 
     
             <button id="submit" type="submit" class="btn btn-warning btn-lg">Submit</button>
-     </form>    
-                
+     </form>        
         </div>
 
     </div>
