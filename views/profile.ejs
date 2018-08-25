@@ -255,7 +255,7 @@ padding: 1% 1% 1% 1%
                 data:['Area 1','Area 2','Area 3','Area 4']
             },
             color: [
-			"#a2d7d8","#bfe1bf","#767675","#fcd059","#de5842"
+			"#F8FF7F","#7FFFAF","#DDB3FF","#8CC8FF"
 			],
              xAxis: {
         type: 'time',
@@ -316,7 +316,7 @@ padding: 1% 1% 1% 1%
                 data:['Area 1','Area 2','Area 3','Area 4']
             },
             color: [
-			"#a2d7d8","#bfe1bf","#767675","#fcd059","#de5842"
+			"#F8FF7F","#7FFFAF","#DDB3FF","#8CC8FF"
 			],
              xAxis: {
         type: 'time',
@@ -376,7 +376,7 @@ padding: 1% 1% 1% 1%
     <h3><span class="fa fa-clipboard"></span> Submit Feedback!</h3>
     <form action="/profile" method="post">
     <div class ="row">
-    <p><strong>Level 2 R&D Office (Hover to view more information)</strong><p>
+    <p><strong>Level 2 R&D Office (Click to select area)</strong><p>
     <div class="layout">
     <img src='../static/layout_m.png' alt="Office Layout"  width="60%">
      <div class="area1" id="area1" value="1" onclick="clickArea(this)">Area 1
@@ -398,8 +398,8 @@ padding: 1% 1% 1% 1%
     </div>
     
                 <div class="form-group">
-                <label>Area (Click to select)</label>
-                <div id="adiv">Select your area...</div>
+                <label>Area Selected</label>
+                <div id="adiv" style="font-size:150%;">Select your area...</div>
                 <input type="hidden" id="ainput" class="form-control" name="area">
             </div>
     
@@ -411,32 +411,34 @@ padding: 1% 1% 1% 1%
         <input type="hidden" id="date" name="date" value = <%= String(date)+",\xa0"+String(time) %>>
     <p><strong>Select Comfort Level: (cold:-3 to hot:3)</strong></p>
         <div class="slidecontainer">
-        <input type="range" min="-3" max="3" value="0" class="slider" id="myRange" name="pvalue">
-          <p>Value: <span id="demo"></span></p>
+        
+          <p style="font-size:150%;">Value: <span id="demo"></span></p>
         </div>
         
         <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-
-        output.innerHTML = slider.value;
-        
-        slider.oninput = function() {
-          output.innerHTML = this.value;
-          
-        }
-        
         function clickArea(e) {
         document.getElementById("ainput").value = e.getAttribute('value');
         document.getElementById("adiv").innerHTML = e.getAttribute('value');
-        }        
+        }
+
+        function clickButton(e) {
+        document.getElementById("binput").value = e.getAttribute('value');
+        document.getElementById("demo").innerHTML = e.getAttribute('value');
+        }      
         
         </script>
-        
-
-    
-            <button id="submit" type="submit" class="btn btn-warning btn-lg">Submit</button>
-     </form>        
+        <input type="hidden" id="binput" class="form-control" name="pvalue">
+		<div class="container" style="padding-left: 20%;">
+		  <button type="button" class="btn btn-primary" value="-2" onclick="clickButton(this)">Very Cold</button>
+		  <button type="button" class="btn btn-success" value="-1" onclick="clickButton(this)">  Cold   </button>
+		  <button type="button" class="btn" value="0" onclick="clickButton(this)"> Neutral </button>
+		  <button type="button" class="btn btn-warning" value="1" onclick="clickButton(this)">   Warm   </button>
+		  <button type="button" class="btn btn-danger" value="2" onclick="clickButton(this)">Very Warm</button> 
+		</div>
+		<div class="container" style="padding-left: 0%;padding-top:5%";">
+            <button id="submit" type="submit" class="btn btn-default btn-lg">Submit</button>
+		</div>
+	 </form>        
         </div>
 
     </div>
