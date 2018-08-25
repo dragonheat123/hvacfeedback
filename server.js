@@ -18,8 +18,8 @@ var session      = require('express-session');
 
 
 // configuration ===============================================================
-//var mgurl = process.env.MONGODB_URI;
-var mgurl = 'mongodb://localhost:27017/example';
+var mgurl = process.env.MONGODB_URI;
+//var mgurl = 'mongodb://localhost:27017/example';
 
 
 mongoose.connect(mgurl); // connect to our database
