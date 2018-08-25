@@ -130,16 +130,16 @@ module.exports = function(app, passport) {
 				for (k = 0; k < ndata.length; k++){
 					if (ndata[k].Node=="1" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[0].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[0].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[0].push([ndata[k].timestamp,ndata[k].Humd]);
 					}else if (ndata[k].Node=="2" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[1].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[1].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[1].push([ndata[k].timestamp,ndata[k].Humd]);
 					}else if (ndata[k].Node=="3" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[2].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[2].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[2].push([ndata[k].timestamp,ndata[k].Humd]);
 					}else if (ndata[k].Node=="4" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[3].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[1].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[1].push([ndata[k].timestamp,ndata[k].Humd]);
 					}
 				};
 				tdata = tholder;
@@ -262,16 +262,16 @@ module.exports = function(app, passport) {
 				for (k = 0; k < ndata.length; k++){
 					if (ndata[k].Node=="1" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[0].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[0].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[0].push([ndata[k].timestamp,ndata[k].Humd]);
 					}else if (ndata[k].Node=="2" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[1].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[1].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[1].push([ndata[k].timestamp,ndata[k].Humd]);
 					}else if (ndata[k].Node=="3" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[2].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[2].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[2].push([ndata[k].timestamp,ndata[k].Humd]);
 					}else if (ndata[k].Node=="4" && ndata[k].Temp!= null && ndata[k].Humd!= null){
 						tholder[3].push([ndata[k].timestamp,ndata[k].Temp]);
-						hholder[3].push([ndata[k].timestamp,ndata[k].Temp]);
+						hholder[3].push([ndata[k].timestamp,ndata[k].Humd]);
 					}
 				};
 				tdata = tholder;
