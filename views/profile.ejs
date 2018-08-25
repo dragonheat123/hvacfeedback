@@ -152,13 +152,14 @@ padding: 1% 1% 1% 1%
 
 
 <head>
-    <meta http-equiv="refresh" content="60" >
+    <meta http-equiv="refresh" content="900" >
     <title>3M HVAC Feedback</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
 
 </head>
 <body>
@@ -189,7 +190,184 @@ padding: 1% 1% 1% 1%
         <!--/div-->
         <h3><span class="fa fa-map-marker"></span> Current Weather</h3>
         <span class = "weather"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:00000.204.48692&bannertypeclick=wu_clean2day" title="Kampong Pengkalan Petai, Singapore Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_metric_cond&airportcode=WSSL&ForcedCity=Kampong Pengkalan Petai&ForcedState=Singapore&wmo=48692&language=EN" alt="Find more about Weather in Kampong Pengkalan Petai, SR" width="300" /></a><br><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:00000.204.48692&bannertypeclick=wu_clean2day" title="Get latest Weather Forecast updates" style="font-family: sans-serif; font-size: 12px" target="_blank">Click for weather forecast</a></span>
+	
+	<h3><span class="fa fa-map-marker"></span> Satisfaction in the past hour</h3>
+	<div id="prefchart" style="width:90%; height:400%;"></div>
+	<script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('prefchart'));
+
+        // specify chart configuration item and data
+        var option = {
+            color: [
+			"#a2d7d8","#bfe1bf","#767675","#fcd059","#de5842"
+			],
+            tooltip: {},
+            legend: {
+                data:['Very Cold','Cold','Neutral','Warm','Very Warm']
+            },
+            xAxis: {
+                data: ["All","Area1","Area2","Area3","Area4"]
+            },
+            yAxis: {},
+            series: [{
+                name: 'Very Cold',
+                type: 'bar',
+                data: <%=JSON.stringify(prefarray[0])%>
+            },
+			{
+                name: 'Cold',
+                type: 'bar',
+                data: <%=JSON.stringify(prefarray[1])%>
+            },
+			{
+                name: 'Neutral',
+                type: 'bar',
+                data: <%=JSON.stringify(prefarray[2])%>
+            },
+			{
+                name: 'Warm',
+                type: 'bar',
+                data: <%=JSON.stringify(prefarray[3])%>
+            },
+			{
+                name: 'Very Warm',
+                type: 'bar',
+                data: <%=JSON.stringify(prefarray[4])%>
+            },
+			
+			]
+        };
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+    </script>
+	
+	<h3><span class="fa fa-map-marker"></span> Temp°C in the past week</h3>
+	<div id="temp" style="width:90%; height:300%;"></div>
+		<script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('temp'));
+
+        // specify chart configuration item and data
+        var option = {
+			tooltip: {},
+			legend: {
+                data:['Area 1','Area 2','Area 3','Area 4']
+            },
+            color: [
+			"#a2d7d8","#bfe1bf","#767675","#fcd059","#de5842"
+			],
+             xAxis: {
+        type: 'time',
+
         
+    },
+    yAxis: {
+        type: 'value',
+		min: 15,
+		max: 35
+    },
+	dataZoom : {
+        show : true,
+		type: 'slider',
+        realtime : true,
+		top: '7%'
+
+    },
+    series: [
+        {
+            name:'Area 1',
+            type:'line',
+            data:<%=JSON.stringify(tarray[0])%>
+        },
+        {
+            name:'Area 2',
+            type:'line',
+            
+            data:<%=JSON.stringify(tarray[1])%>
+        },
+        {
+            name:'Area 3',
+            type:'line',
+            
+            data:<%=JSON.stringify(tarray[2])%>
+        },
+        {
+            name:'Area 4',
+            type:'line',
+            data:<%=JSON.stringify(tarray[3])%>
+        }
+    ]
+};
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+    </script>
+	
+	<h3><span class="fa fa-map-marker"></span> Humd% in the past week</h3>
+	<div id="humd" style="width:90%; height:300%;"></div>
+		<script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('humd'));
+
+        // specify chart configuration item and data
+        var option = {
+			tooltip: {},
+			legend: {
+                data:['Area 1','Area 2','Area 3','Area 4']
+            },
+            color: [
+			"#a2d7d8","#bfe1bf","#767675","#fcd059","#de5842"
+			],
+             xAxis: {
+        type: 'time',
+
+        
+    },
+    yAxis: {
+        type: 'value',
+		min: 15,
+		max: 35
+    },
+	dataZoom : {
+        show : true,
+		type: 'slider',
+        realtime : true,
+		top: '7%'
+
+    },
+    series: [
+        {
+            name:'Area 1',
+            type:'line',
+            data:<%=JSON.stringify(harray[0])%>
+        },
+        {
+            name:'Area 2',
+            type:'line',
+            
+            data:<%=JSON.stringify(harray[1])%>
+        },
+        {
+            name:'Area 3',
+            type:'line',
+            
+            data:<%=JSON.stringify(harray[2])%>
+        },
+        {
+            name:'Area 4',
+            type:'line',
+            data:<%=JSON.stringify(harray[3])%>
+        }
+    ]
+};
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+    </script>
+	
+	
+
+
+	
     </div>
     
     <!-- SUBMIT FORM -->
