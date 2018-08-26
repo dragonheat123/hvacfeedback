@@ -309,8 +309,8 @@ module.exports = function(app, passport) {
 			res.setHeader("Access-Control-Allow-Origin", "*");
             require('./nodes.js').find(
             {
-                //'Node' : req.params.nodeid,
-                'Node' : { $gte : 1, $lte : 4 },
+                'Node' : req.params.nodeid,
+                //'Node' : { $gte : 1, $lte : 4 },
 				'timestamp' : { $gte : req.params.start, $lte : req.params.end }
             }, function(err, task) {
                 if (err){
